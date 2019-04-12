@@ -181,7 +181,7 @@ open class CloudCore {
 		guard let notificationDictionary = notificationUserInfo as? [String: NSObject] else { return nil }
 		let notification = CKNotification(fromRemoteNotificationDictionary: notificationDictionary)
 		
-		guard let id = notification.subscriptionID else { return nil }
+        guard let id = notification?.subscriptionID else { return nil }
 		
 		switch id {
 		case config.subscriptionIDForPrivateDB: return config.container.privateCloudDatabase

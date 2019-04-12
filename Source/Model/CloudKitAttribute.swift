@@ -41,7 +41,9 @@ class CloudKitAttribute {
 
 			if managedObjects.count == 0 { return nil }
 			return managedObjects
-		case let asset as CKAsset: return try Data(contentsOf: asset.fileURL)
+		case let asset as CKAsset:
+            guard let fileURL = asset.fileURL else { return nil }
+            return try Data(contentsOf: fileURL)
 		default: return value
 		}
 	}
